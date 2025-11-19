@@ -44,51 +44,52 @@ Bu backend aşağıdaki özellikleri içerir:
 Python 3.11+ & MySQL 8 ile tamamen uyumludur.
 
 ## 📁 Project Structure
----
-.
-├── app.py                     # App factory, OpenAPI, metrics, middleware
-├── config/
-│   ├── settings.py            # Dev/Test/Prod config, env validation, CORS/security
-│   └── logging_conf.py        # Logging config, rotating handlers, JSON logs
-├── database/
-│   ├── base.py                # SQLAlchemy engine, session, pooling
-│   └── migrations/            # Alembic migrations
-├── models/
-│   └── user.py                # User model (soft-delete, timestamps)
-├── repositories/
-│   └── user_repository.py     # CRUD, filters, pagination, ETag
-├── services/
-│   └── user_service.py        # Business logic, hashing, cache invalidation
-├── routes/
-│   ├── auth.py                # register, login, refresh, logout, me
-│   ├── users.py               # Admin CRUD
-│   └── admin.py               # CSV export (sync/async)
-├── utils/
-│   ├── security.py            # JWT, RBAC, fingerprint, rotation
-│   ├── response.py            # Envelope response
-│   ├── errors.py              # Global error handlers
-│   ├── pagination.py          # Pagination logic
-│   ├── cache.py               # Redis / in-memory cache
-│   ├── rate_limit.py          # Rate limiting
-│   ├── metrics.py             # Prometheus metrics
-│   ├── etag.py                # ETag helpers
-│   └── logger.py              # Logger factory
-├── schemas/
-│   ├── auth_schema.py
-│   └── user_schema.py
-├── client/
-│   └── api.py                 # Python SDK
-├── examples/
-│   └── demo_client.py         # SDK usage example
-├── tests/                     # pytest suite
-├── manage.py                  # CLI commands (create-admin, seed-data)
-├── Dockerfile                 # Production build
-├── Dockerfile.alpine          # Lightweight build
-├── docker-compose.yml         # API + MySQL + Redis
-├── Makefile                   # Format/lint/typecheck/run helper
-├── pyproject.toml             # ruff/black/mypy configs
-└── LICENSE                    # MIT License
----
+
+| Path | Description |
+|------|-------------|
+| `app.py` | App factory, OpenAPI, metrics, middleware |
+| **config/** | — |
+| `config/settings.py` | Dev/Test/Prod config, env validation, CORS/security |
+| `config/logging_conf.py` | JSON logging, rotating handlers |
+| **database/** | — |
+| `database/base.py` | SQLAlchemy engine, session, pooling |
+| `database/migrations/` | Alembic migrations |
+| **models/** | — |
+| `models/user.py` | User model (soft delete, timestamps) |
+| **repositories/** | — |
+| `repositories/user_repository.py` | CRUD, filters, pagination, ETag management |
+| **services/** | — |
+| `services/user_service.py` | Business logic, hashing, cache invalidation |
+| **routes/** | — |
+| `routes/auth.py` | Register, login, refresh, logout, me |
+| `routes/users.py` | Admin CRUD |
+| `routes/admin.py` | CSV export (sync/async) |
+| **utils/** | — |
+| `utils/security.py` | JWT, RBAC, fingerprint, rotation |
+| `utils/response.py` | Response envelope helper |
+| `utils/errors.py` | Global error handlers |
+| `utils/pagination.py` | Pagination logic |
+| `utils/cache.py` | Redis / in-memory cache layer |
+| `utils/rate_limit.py` | Rate limiting module |
+| `utils/metrics.py` | Prometheus metrics |
+| `utils/etag.py` | ETag helpers |
+| `utils/logger.py` | Centralized logger |
+| **schemas/** | — |
+| `schemas/auth_schema.py` | Marshmallow schema for auth |
+| `schemas/user_schema.py` | Marshmallow schema for users |
+| **client/** | — |
+| `client/api.py` | Python SDK client |
+| **examples/** | — |
+| `examples/demo_client.py` | Example client usage |
+| **tests/** | pytest suite |
+| `manage.py` | CLI commands (create-admin, seed-data) |
+| `Dockerfile` | Production build with Gunicorn |
+| `Dockerfile.alpine` | Lightweight Alpine image |
+| `docker-compose.yml` | API + MySQL + Redis stack |
+| `Makefile` | Format, lint, test, typecheck commands |
+| `pyproject.toml` | ruff, mypy, black configuration |
+| `LICENSE` | MIT License |
+
 
 🔄 Request Lifecycle (Flow Diagram)
 
