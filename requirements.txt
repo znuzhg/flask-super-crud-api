@@ -1,0 +1,17 @@
+Flask
+SQLAlchemy
+PyMySQL
+alembic
+python-dotenv
+PyJWT
+Werkzeug
+marshmallow
+mysql-connector-python
+flask-smorest
+passlib[bcrypt]
+pytest
+python-json-logger
+redis
+rq
+bcrypt>=4.0.1
+gunicorn
