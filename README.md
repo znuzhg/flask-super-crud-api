@@ -1,158 +1,170 @@
-📌 README.md (Tam Profesyonel Versiyon)
+# 🧑‍💻 Author  
+**znuzhg (Mahmut Balıkçı)**  
+GitHub: https://github.com/znuzhg  
 
-# 🚀 Flask Production-Ready Backend Boilerplate  
-### JWT • RBAC • SQLAlchemy • Redis Cache • RQ Jobs • Metrics • Docker • CI • OpenAPI 3
+---
 
-This repository provides a **production-grade Flask backend skeleton** with modern architecture, layered design, JWT authentication, RBAC, Redis caching, rate limiting, background jobs, ETag versioning, metrics, observability, Docker support, CI pipeline, and a built-in Python SDK.
+🚀 Flask Production-Ready Backend Boilerplate
+JWT • RBAC • SQLAlchemy • Redis Cache • RQ Jobs • Metrics • Docker • CI • OpenAPI 3
 
-Use it as a **solid foundation** to build secure, scalable, maintainable backend services.
+Bu proje, modern bir production-grade Flask backend oluşturmak için gerekli tüm yapıyı sunar.
+Güvenli, ölçeklenebilir ve profesyonel bir mimariye sahip bir web servisi geliştirmen için hazır altyapı sağlar.
 
 ---
 
 ## ⭐ Executive Summary
 
-This backend template includes:
+Bu backend aşağıdaki özellikleri içerir:
 
-- **Secure JWT auth** (access/refresh, rotation, blacklist, fingerprinting)  
-- **Role-based authorization** (RBAC: admin, user)  
-- **User CRUD** with soft-delete & ETag / If-Match support  
-- **Admin features** (CSV export, async RQ jobs)  
-- **Redis caching layer**  
-- **Metrics & observability endpoints**  
-- **Docker + Gunicorn production deployment**  
-- **SQLite-based test environment**  
-- **Python SDK for clients**  
-- **Fully documented OpenAPI 3**  
+🔐 JWT Authentication
+(Access/Refresh token, rotation, blacklist, fingerprinting)
 
-Compatible with **Python 3.11+** and **MySQL 8**.
+🛡 RBAC yetkilendirme (admin, user)
 
----
+👤 User CRUD (ETag + If-Match destekli)
 
-# 📁 Project Structure
+⚙️ Admin tools (CSV export, async jobs)
+
+⚡ Redis Cache entegrasyonu
+
+📊 Metrics / Observability endpointleri
+
+🧵 Background jobs (RQ)
+
+🧱 SQLAlchemy ORM
+
+🐳 Docker + Gunicorn Deployment
+
+🔍 OpenAPI 3 / Swagger dokümantasyonu
+
+🧪 pytest test suite
+
+🧰 Python SDK (Client)
+
+Python 3.11+ & MySQL 8 ile tamamen uyumludur.
+
+📁 Project Structure
 .
-├─ app.py # App factory, OpenAPI, metrics, middleware
+├─ app.py                     # App factory, OpenAPI, metrics, middleware
 ├─ config/
-│ ├─ settings.py # Dev/Test/Prod config, env validation, CORS/security
-│ └─ logging_conf.py # Logging config, rotating handlers, JSON logs
+│  ├─ settings.py             # Dev/Test/Prod config, env validation, CORS/security
+│  └─ logging_conf.py         # JSON/rotating logs
 ├─ database/
-│ ├─ base.py # SQLAlchemy engine, session, pooling
-│ └─ migrations/ # Alembic migrations
+│  ├─ base.py                 # SQLAlchemy engine, session, pooling
+│  └─ migrations/             # Alembic migrations
 ├─ models/
-│ └─ user.py # User model with soft-delete & timestamps
+│  └─ user.py                 # User model (soft-delete, timestamps)
 ├─ repositories/
-│ └─ user_repository.py # CRUD, filters, pagination, ETag
+│  └─ user_repository.py      # CRUD, filters, pagination, ETag
 ├─ services/
-│ └─ user_service.py # Business logic, hashing, cache invalidation
+│  └─ user_service.py         # Business logic, hashing, cache invalidation
 ├─ routes/
-│ ├─ auth.py # register, login, refresh, logout, me
-│ ├─ users.py # Admin CRUD, list, user me
-│ └─ admin.py # CSV export (sync/async) + job status
+│  ├─ auth.py                 # register, login, refresh, logout
+│  ├─ users.py                # Admin CRUD
+│  └─ admin.py                # CSV export (sync/async)
 ├─ utils/
-│ ├─ security.py # JWT, RBAC, fingerprint, blacklist, rotation
-│ ├─ response.py # Response envelope helpers
-│ ├─ errors.py # Global error handlers
-│ ├─ pagination.py # Pagination & validation
-│ ├─ cache.py # Redis/in-memory caching
-│ ├─ rate_limit.py # Rate limiting by IP/email
-│ ├─ metrics.py # Prometheus metrics generator
-│ ├─ etag.py # ETag helpers
-│ └─ logger.py # Logger getter
-├─ schemas/ # Marshmallow schemas (optional)
+│  ├─ security.py             # JWT, RBAC, fingerprint, rotation
+│  ├─ response.py             # Envelope response
+│  ├─ errors.py               # Global error handlers
+│  ├─ pagination.py           # Pagination logic
+│  ├─ cache.py                # Redis / in-memory cache
+│  ├─ rate_limit.py           # Rate limiting
+│  ├─ metrics.py              # Prometheus metrics
+│  ├─ etag.py                 # ETag helpers
+│  └─ logger.py               # Logger factory
+├─ schemas/
+│  ├─ auth_schema.py
+│  └─ user_schema.py
 ├─ client/
-│ └─ api.py # Python SDK client
+│  └─ api.py                  # Python SDK
 ├─ examples/
-│ └─ demo_client.py # SDK usage example
-├─ tests/ # pytest suite
-├─ manage.py # CLI commands (create-admin / seed-data)
-├─ Dockerfile # Multi-stage build (production)
-├─ Dockerfile.alpine # Lightweight build
-├─ docker-compose.yml # API + MySQL stack with healthchecks
-├─ Makefile # Format, lint, typecheck, test, run
-├─ pyproject.toml # Tool configs: black, ruff, mypy
-└─ LICENSE # MIT License
+│  └─ demo_client.py
+├─ tests/
+│  ├─ test_auth.py
+│  ├─ test_users.py
+│  └─ ...
+├─ manage.py                  # CLI komutları (create-admin, seed-data)
+├─ Dockerfile                 # Production build
+├─ Dockerfile.alpine          # Lightweight build
+├─ docker-compose.yml         # API + MySQL + Redis
+├─ Makefile                   # test/lint/typecheck/run
+├─ pyproject.toml             # Formatting & lint tools
+└─ LICENSE                    # MIT License
 
+🔄 Request Lifecycle (Flow Diagram)
 
----
+┌──────────────────────────────┐
+│          HTTP Request        │
+└───────────────┬──────────────┘
+                ▼
+   ┌─────────────────────────┐
+   │         Routes          │
+   └───────────┬────────────┘
+               ▼
+   ┌─────────────────────────┐
+   │        Services         │
+   └───────────┬────────────┘
+               ▼
+   ┌─────────────────────────┐
+   │      Repositories       │
+   └───────────┬────────────┘
+               ▼
+   ┌──────────────────────────┐
+   │ SQLAlchemy ORM / Cache   │
+   └───────────┬─────────────┘
+               ▼
+    ┌──────────────────────────┐
+    │       MySQL / Redis      │
+    └──────────────────────────┘
+🔐 Authentication & Authorization
+✔ Access Token (short TTL)
+✔ Refresh Token (long TTL)
+✔ Rotation (token_version)
+✔ Blacklist (jti)
+✔ Fingerprinting (IP + User-Agent)
+✔ RBAC (admin / user)
 
-# 🔄 Request Lifecycle (Flow Diagram)
+Endpoints
 
-    ┌──────────────────────────────┐
-    │          HTTP Request        │
-    └───────────────┬──────────────┘
-                    ▼
-       ┌─────────────────────────┐
-       │         Routes          │
-       └───────────┬────────────┘
-                   ▼
-       ┌─────────────────────────┐
-       │        Services         │
-       └───────────┬────────────┘
-                   ▼
-       ┌─────────────────────────┐
-       │      Repositories       │
-       └───────────┬────────────┘
-                   ▼
-       ┌─────────────────────────┐
-       │ SQLAlchemy ORM / Cache  │
-       └───────────┬────────────┘
-                   ▼
-         ┌───────────────────┐
-         │   MySQL / Redis   │
-         └───────────────────┘
+| Method | Endpoint           | Description           |
+| ------ | ------------------ | --------------------- |
+| POST   | `/auth/register`   | New user (idempotent) |
+| POST   | `/auth/login`      | Access+Refresh tokens |
+| POST   | `/auth/refresh`    | Rotate tokens         |
+| POST   | `/auth/logout`     | Revoke token          |
+| POST   | `/auth/logout-all` | Revoke all tokens     |
+| GET    | `/auth/me`         | Logged-in user        |
 
----
+👤 Users API
 
-# 🔐 Authentication & Authorization
+| Method | Endpoint      | Role  | Description       |
+| ------ | ------------- | ----- | ----------------- |
+| POST   | `/users`      | admin | Create            |
+| GET    | `/users`      | admin | List (cached)     |
+| GET    | `/users/<id>` | admin | Fetch (ETag)      |
+| PUT    | `/users/<id>` | admin | Update (If-Match) |
+| PATCH  | `/users/<id>` | admin | Partial update    |
+| DELETE | `/users/<id>` | admin | Soft delete       |
+| GET    | `/users/me`   | user  | Own profile       |
 
-### ✔ Access Token (short TTL)  
-### ✔ Refresh Token (long TTL)  
-### ✔ Rotation (token_version)  
-### ✔ Blacklist (jti)  
-### ✔ Fingerprinting (ip + ua)  
-### ✔ RBAC (`roles = admin,user`)  
+🧮 Pagination / Sorting / Filtering
 
-### Endpoints
+Örnek:
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /auth/register | Idempotent user registration |
-| POST | /auth/login | Get access & refresh token |
-| POST | /auth/refresh | Rotate tokens |
-| POST | /auth/logout | Revoke current token |
-| POST | /auth/logout-all | Revoke all tokens |
-| GET | /auth/me | Current user |
-
----
-
-# 👤 Users API
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| POST | /users | admin | Create user |
-| GET | /users | admin | List users (cached) |
-| GET | /users/<id> | admin | Fetch user (ETag) |
-| PUT | /users/<id> | admin | Update with If-Match |
-| PATCH | /users/<id> | admin | Partial update |
-| DELETE | /users/<id> | admin | Soft delete |
-| GET | /users/me | user | Self info |
-
----
-
-# 🧮 Pagination / Sorting / Filtering
 /users?page=1&per_page=20&sort=desc&sort_by=created_at&name=ali&email=@gmail.com
 
+page ≥ 1
 
-- **page** ≥ 1  
-- **per_page** ≤ 100  
-- **sort**: asc | desc  
-- **sort_by**: created_at | email | name | id  
-- **Filtering**: name, email (case-insensitive)
+per_page ≤ 100
 
----
+Sorting: asc | desc
 
-# 🧱 Error Handling (Standard Envelope)
+Sort fields: created_at, email, name, id
 
-```json
+Filtering: name, email
+
+🧱 Error Handling (Standard Envelope)
+
 {
   "success": false,
   "data": null,
@@ -164,60 +176,67 @@ Compatible with **Python 3.11+** and **MySQL 8**.
 }
 
 Error Codes
-Code	Meaning
-VALIDATION_ERROR	Bad input
-INVALID_CREDENTIALS	Wrong password
-EMAIL_EXISTS	Duplicate email
-TOKEN_EXPIRED	Token expired
-TOKEN_REVOKED	Blacklisted
-TOKEN_CONTEXT_MISMATCH	IP/UA mismatch
-VERSION_CONFLICT	ETag mismatch
-FORBIDDEN	RBAC
-RATE_LIMITED	Too many requests
 
-⚙️ Configuration & Environment Variables
-| Name                  | Required | Default | Example                               | Description          |
-| --------------------- | -------- | ------- | ------------------------------------- | -------------------- |
-| DATABASE_URL          | yes      | —       | mysql+pymysql://root:pass@db:3306/app | DB URI               |
-| SECRET_KEY            | yes      | —       | change-me                             | Flask secret         |
-| JWT_SECRET            | yes      | —       | change-me-too                         | JWT signing key      |
-| JWT_ALG               | no       | HS256   | HS256                                 | Algorithm            |
-| ACCESS_TOKEN_EXPIRES  | no       | 600     | 900                                   | Seconds              |
-| REFRESH_TOKEN_EXPIRES | no       | 2592000 | 2592000                               | Seconds              |
-| CORS_ORIGINS          | no       | *       | [https://site.com](https://site.com)  | Allowed origins      |
-| LOG_JSON              | no       | false   | true                                  | Structured logs      |
-| REDIS_URL             | no       | —       | redis://redis:6379/0                  | Enables cache & jobs |
-| MAX_CONTENT_LENGTH    | no       | 2MB     | 1MB                                   | Request size limit   |
-| FLASK_ENV             | no       | dev     | prod                                  | Environment          |
+| Code                   | Meaning                  |
+| ---------------------- | ------------------------ |
+| VALIDATION_ERROR       | Bad input                |
+| INVALID_CREDENTIALS    | Wrong password           |
+| EMAIL_EXISTS           | Duplicate email          |
+| TOKEN_EXPIRED          | Token expired            |
+| TOKEN_REVOKED          | Blacklisted              |
+| TOKEN_CONTEXT_MISMATCH | IP / User-Agent mismatch |
+| VERSION_CONFLICT       | ETag mismatch            |
+| FORBIDDEN              | RBAC denied              |
+| RATE_LIMITED           | Too many requests        |
+
+
+⚙️ Environment Variables
+
+| Name                  | Required | Default | Example                               | Description     |
+| --------------------- | -------- | ------- | ------------------------------------- | --------------- |
+| DATABASE_URL          | yes      | —       | mysql+pymysql://root:pass@db:3306/app | DB URI          |
+| SECRET_KEY            | yes      | —       | change-me                             | Flask secret    |
+| JWT_SECRET            | yes      | —       | change-me-too                         | JWT signing     |
+| JWT_ALG               | no       | HS256   | HS256                                 | Algorithm       |
+| ACCESS_TOKEN_EXPIRES  | no       | 600     | 900                                   | sec             |
+| REFRESH_TOKEN_EXPIRES | no       | 2592000 | 2592000                               | sec             |
+| CORS_ORIGINS          | no       | *       | [https://site.com](https://site.com)  | Allowed origins |
+| LOG_JSON              | no       | false   | true                                  | JSON logs       |
+| REDIS_URL             | no       | —       | redis://redis:6379/0                  | Cache + RQ      |
+| MAX_CONTENT_LENGTH    | no       | 2MB     | 1MB                                   | Upload limit    |
+| FLASK_ENV             | no       | dev     | prod                                  | Environment     |
 
 🐳 Docker Deployment
-Build & Run
-Includes
 
-MySQL 8 (persistent)
+Build
+docker build -t flask-api .
+
+Run (with compose)
+docker-compose up --build
+
+İçerir:
+
+MySQL 8
+
+Redis
 
 API (Gunicorn)
 
 Healthchecks
 
-Automatic Alembic migrations (attempt)
+Alembic migrations
 
 🔥 Production Notes
-Gunicorn
+Gunicorn workers: 2 * CPU + 1
 
-Binds to 0.0.0.0:5000
+Mutlaka strong SECRET_KEY ve JWT_SECRET kullan
 
-Recommended workers: 2 * CPU + 1
+CORS’u prod ortamında kısıtla
 
-Security Recommendations
+Reverse proxy olarak Nginx + HTTPS kullan
 
-Strong SECRET_KEY & JWT_SECRET
-
-Restrict CORS_ORIGINS
-
-Use HTTPS via Nginx reverse proxy
-
-Enable LOG_JSON=true for production logs
+Prod logları için:
+LOG_JSON=true
 
 🧪 Testing & Tooling
 pytest -q
@@ -225,8 +244,11 @@ make format
 make lint
 make typecheck
 make test
-SQLite in-memory used for test DB.
+
+Test DB → SQLite (in-memory)
+
 🧰 Python SDK Example
+
 from client import APIClient
 
 api = APIClient("http://localhost:5000")
@@ -234,33 +256,32 @@ api.login("admin@example.com", "secret123")
 
 me = api.get_current_user()
 print(me)
+
 📈 Roadmap
+Better metrics (latency histograms)
 
-Additional resources (posts, products, organizations)
+RBAC matrix expansion
 
-RBAC permissions matrix
+Node.js / Go / Java SDKs
 
-Metrics histograms (latency buckets)
-
-SDKs for Node.js / Go / Java
-
-Distributed rate limiting (Redis-backed)
+Redis-backed distributed rate limiting
 
 OTP / MFA login
 
-🤝 Contributing
+More background jobs
 
+🤝 Contributing
 Fork the repo
 
-Create a feature branch
+Feature branch oluştur
 
-Follow formatting rules:
+Format & lint kurallarına uy:
 make format && make lint && make typecheck
-Submit a PR with a clear description
 
-All tests must pass
+Açıklayıcı bir PR gönder
+
+Tüm testler geçmeli
 
 📄 License
-
-Licensed under the MIT License.
-See LICENSE for details.
+Bu proje MIT License ile lisanslanmıştır.
+Detaylar için: LICENSE
