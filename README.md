@@ -43,53 +43,51 @@ Bu backend aşağıdaki özellikleri içerir:
 
 Python 3.11+ & MySQL 8 ile tamamen uyumludur.
 
-📁 Project Structure
+## 📁 Project Structure
 .
-├─ app.py                     # App factory, OpenAPI, metrics, middleware
-├─ config/
-│  ├─ settings.py             # Dev/Test/Prod config, env validation, CORS/security
-│  └─ logging_conf.py         # JSON/rotating logs
-├─ database/
-│  ├─ base.py                 # SQLAlchemy engine, session, pooling
-│  └─ migrations/             # Alembic migrations
-├─ models/
-│  └─ user.py                 # User model (soft-delete, timestamps)
-├─ repositories/
-│  └─ user_repository.py      # CRUD, filters, pagination, ETag
-├─ services/
-│  └─ user_service.py         # Business logic, hashing, cache invalidation
-├─ routes/
-│  ├─ auth.py                 # register, login, refresh, logout
-│  ├─ users.py                # Admin CRUD
-│  └─ admin.py                # CSV export (sync/async)
-├─ utils/
-│  ├─ security.py             # JWT, RBAC, fingerprint, rotation
-│  ├─ response.py             # Envelope response
-│  ├─ errors.py               # Global error handlers
-│  ├─ pagination.py           # Pagination logic
-│  ├─ cache.py                # Redis / in-memory cache
-│  ├─ rate_limit.py           # Rate limiting
-│  ├─ metrics.py              # Prometheus metrics
-│  ├─ etag.py                 # ETag helpers
-│  └─ logger.py               # Logger factory
-├─ schemas/
-│  ├─ auth_schema.py
-│  └─ user_schema.py
-├─ client/
-│  └─ api.py                  # Python SDK
-├─ examples/
-│  └─ demo_client.py
-├─ tests/
-│  ├─ test_auth.py
-│  ├─ test_users.py
-│  └─ ...
-├─ manage.py                  # CLI komutları (create-admin, seed-data)
-├─ Dockerfile                 # Production build
-├─ Dockerfile.alpine          # Lightweight build
-├─ docker-compose.yml         # API + MySQL + Redis
-├─ Makefile                   # test/lint/typecheck/run
-├─ pyproject.toml             # Formatting & lint tools
-└─ LICENSE                    # MIT License
+├── app.py                     # App factory, OpenAPI, metrics, middleware
+├── config/
+│   ├── settings.py            # Dev/Test/Prod config, env validation, CORS/security
+│   └── logging_conf.py        # Logging config, rotating handlers, JSON logs
+├── database/
+│   ├── base.py                # SQLAlchemy engine, session, pooling
+│   └── migrations/            # Alembic migrations
+├── models/
+│   └── user.py                # User model (soft-delete, timestamps)
+├── repositories/
+│   └── user_repository.py     # CRUD, filters, pagination, ETag
+├── services/
+│   └── user_service.py        # Business logic, hashing, cache invalidation
+├── routes/
+│   ├── auth.py                # register, login, refresh, logout, me
+│   ├── users.py               # Admin CRUD
+│   └── admin.py               # CSV export (sync/async)
+├── utils/
+│   ├── security.py            # JWT, RBAC, fingerprint, rotation
+│   ├── response.py            # Envelope response
+│   ├── errors.py              # Global error handlers
+│   ├── pagination.py          # Pagination logic
+│   ├── cache.py               # Redis / in-memory cache
+│   ├── rate_limit.py          # Rate limiting
+│   ├── metrics.py             # Prometheus metrics
+│   ├── etag.py                # ETag helpers
+│   └── logger.py              # Logger factory
+├── schemas/
+│   ├── auth_schema.py
+│   └── user_schema.py
+├── client/
+│   └── api.py                 # Python SDK
+├── examples/
+│   └── demo_client.py         # SDK usage example
+├── tests/                     # pytest suite
+├── manage.py                  # CLI commands (create-admin, seed-data)
+├── Dockerfile                 # Production build
+├── Dockerfile.alpine          # Lightweight build
+├── docker-compose.yml         # API + MySQL + Redis
+├── Makefile                   # Format/lint/typecheck/run helper
+├── pyproject.toml             # ruff/black/mypy configs
+└── LICENSE                    # MIT License
+
 
 🔄 Request Lifecycle (Flow Diagram)
 
