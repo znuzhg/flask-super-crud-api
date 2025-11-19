@@ -44,6 +44,7 @@ Bu backend aşağıdaki özellikleri içerir:
 Python 3.11+ & MySQL 8 ile tamamen uyumludur.
 
 ## 📁 Project Structure
+---
 .
 ├── app.py                     # App factory, OpenAPI, metrics, middleware
 ├── config/
@@ -87,7 +88,7 @@ Python 3.11+ & MySQL 8 ile tamamen uyumludur.
 ├── Makefile                   # Format/lint/typecheck/run helper
 ├── pyproject.toml             # ruff/black/mypy configs
 └── LICENSE                    # MIT License
-
+---
 
 🔄 Request Lifecycle (Flow Diagram)
 
